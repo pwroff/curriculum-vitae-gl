@@ -1,12 +1,23 @@
-import {Vector3, PerspectiveCamera} from 'three';
+import {
+    Mesh,
+    MeshPhongMaterial,
+    BoxGeometry,
+    MeshStandardMaterial,
+    Vector3
+} from 'three';
 import generatedDif from "../helpers/generatedDif";
 
-export default class extends PerspectiveCamera {
-    constructor(W = window.innerWidth, H = window.innerHeight) {
-        super( 75, W/H, 0.1, 1000 );
+export default class BaseMesh extends Mesh {
+    constructor(characterCamera) {
+        const cubeMaterial = new MeshPhongMaterial( {
+            color: 0xffffff
+        } );
+        const geometry = new BoxGeometry( 1, 1, 1 );
+        super(geometry, cubeMaterial);
         this.positionTarget = new Vector3(0, 0, 0);
-        this.lookTarget = new Vector3(0, 0, 0);
+        this.lookTarget = new Vector3(0, 0, -10);
         this.look = new Vector3(0, 0, 0);
+        this.isActive = false;
     }
 
     onTick(ds) {

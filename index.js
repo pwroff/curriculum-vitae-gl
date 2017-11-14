@@ -9,7 +9,7 @@ const server = Server(app);
 const {PORT: envPort, NODE_ENV: ENV} = process.env;
 const PORT = envPort || 4123;
 const publicPath = '/public';
-const isDevelopment = ENV === 'development';
+const isDevelopment = true;
 
 app.enable('trust proxy');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -75,7 +75,7 @@ app.get('/', (req, res) => {
 
     if (isDevelopment) {
         let sock = fs.readFileSync('./node_modules/socket.io-client/dist/socket.io.js');
-        sock += `\n var socket = io.connect('http://localhost:${PORT}');
+        sock += `\n var socket = io.connect('http://10.0.0.1:${PORT}');
         socket.on('refresh', function(){
                 return window.location.reload(true);
               });`;
