@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import BaseMesh from "../objects/BaseMesh";
+import BaseMesh, {BaseObject} from "../objects/BaseMesh";
 
 const {
     Color,
@@ -59,6 +59,8 @@ export default class World {
         this._activeTarget = target;
         if (target) {
             target.object.isActive = true;
+            const {x, y, z} = target.object.position;
+            this.lightTarget.positionTarget.set(x, y, z);
         }
     }
 
@@ -96,14 +98,38 @@ export default class World {
     };
 
     setupScene() {
-        this.scene.background = new Color(0x0a0a0a);
-        var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-        this.scene.add( directionalLight );
-        directionalLight.position.z = .5;
+        this.scene.background = new Color(0x050505);
+        // var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+        // this.scene.add( directionalLight );
+        // directionalLight.position.z = .5;
+        this.scene.fog = new THREE.FogExp2( 0xff0000, 0.1 );
+        const points = [
+            [-3, 3, 10], [3, 3, 10], [-3, -3, 10], [3, -3, 10]
+        ];
+        this.lightTarget = new BaseObject();
+        this.lightTarget.speed = 4;
+        this.scene.add(this.lightTarget);
+        this.actors.set(this.uid, this.lightTarget);
+        for (let i = 0; i < 4; i++) {
+            const spotLight = new THREE.SpotLight( 0xffffff, 1, 20, 0.1 );
+            spotLight.position.set( ...points[i]);
+
+            spotLight.castShadow = true;
+
+            spotLight.shadow.mapSize.width = 1024;
+            spotLight.shadow.mapSize.height = 1024;
+
+            spotLight.shadow.camera.near = 0;
+            spotLight.shadow.camera.far = 40;
+            spotLight.shadow.camera.fov = 30;
+            spotLight.target = this.lightTarget;
+
+            this.scene.add( spotLight );
+        }
     }
 
     setupActors() {
-        const pattern = [[-1, 1, -0.5], [1,1,-0.5], [-1, -1, -0.5], [1, -1, -0.5]];
+        const pattern = [[-1, 1, 0], [1,1,0], [-1, -1, 0], [1, -1, 0]];
         const points = 20;
         const positions = [];
         for (let i = 0; i < points; i ++) {

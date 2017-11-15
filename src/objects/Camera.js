@@ -3,7 +3,7 @@ import generatedDif from "../helpers/generatedDif";
 
 export default class extends PerspectiveCamera {
     constructor(W = window.innerWidth, H = window.innerHeight) {
-        super( 75, W/H, 0.1, 1000 );
+        super( 75, W/H, 0.1, 100 );
         this.positionTarget = new Vector3(0, 0, 0);
         this.lookTarget = new Vector3(0, 0, 0);
         this.look = new Vector3(0, 0, 0);

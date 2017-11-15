@@ -2,9 +2,9 @@ const {resolve} = require('path');
 const webpack = require('webpack');
 const isDevelopment = process.env.NODE_ENV === "development";
 
-if (!isDevelopment) {
-    plugins.push(new webpack.optimize.UglifyJsPlugin);
-}
+// if (!isDevelopment) {
+//     plugins.push(new webpack.optimize.UglifyJsPlugin);
+// }
 
 
 module.exports = {

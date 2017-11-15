@@ -3,9 +3,30 @@ import {
     MeshPhongMaterial,
     BoxGeometry,
     MeshStandardMaterial,
+    Object3D,
     Vector3
 } from 'three';
 import generatedDif from "../helpers/generatedDif";
+
+export class BaseObject extends Object3D {
+    constructor() {
+        super();
+        this.positionTarget = new Vector3(0, 0, 0);
+        this.lookTarget = new Vector3(0, 0, 0);
+        this.look = new Vector3(0, 0, 0);
+        this.speed = 1;
+    }
+
+    onTick(ds) {
+        ['position', 'look'].forEach((prop) => {
+            const difCords = generatedDif(this[prop], this[`${prop}Target`], ds, this.speed);
+            Object.keys(difCords).forEach((axis) => {
+                this[prop][axis] += difCords[axis];
+            });
+        });
+        this.lookAt(this.look);
+    }
+}
 
 export default class BaseMesh extends Mesh {
     constructor(characterCamera) {
