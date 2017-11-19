@@ -7,11 +7,12 @@ export default class extends PerspectiveCamera {
         this.positionTarget = new Vector3(0, 0, 0);
         this.lookTarget = new Vector3(0, 0, 0);
         this.look = new Vector3(0, 0, 0);
+        this.speed = 4;
     }
 
     onTick(ds) {
         ['position', 'look'].forEach((prop) => {
-            const difCords = generatedDif(this[prop], this[`${prop}Target`], ds, 1);
+            const difCords = generatedDif(this[prop], this[`${prop}Target`], ds, this.speed);
             Object.keys(difCords).forEach((axis) => {
                 this[prop][axis] += difCords[axis];
             });
