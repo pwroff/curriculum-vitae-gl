@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import BaseMesh, {BaseObject, createObjectClass} from "../objects/BaseMesh";
+import BaseMesh, {BaseObject, createObjectClass, DirectLight} from "../objects/BaseMesh";
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -20,7 +20,7 @@ window.H = window.innerHeight;
 const zeroVector = new Vector3(0, 0, 0);
 
 export default class World {
-    constructor(scene, renderer, camera) {
+    constructor(scene, renderer, camera, menu) {
         this.renderer = renderer;
         this.scene = scene;
         this.camera = camera;
@@ -33,6 +33,7 @@ export default class World {
         this.mouseVector = new Vector2(-1,-1);
         this._activeTarget = null;
         this.lastTarget = null;
+        this.menu = menu;
 
         document.body.appendChild(this.canvas);
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -41,7 +42,7 @@ export default class World {
         document.body.onmousemove = (e) => {
             this.mouseVector.x = ( e.clientX / W ) * 2 - 1;
             this.mouseVector.y = - ( e.clientY / H ) * 2 + 1;
-        }
+        };
     }
 
     get uid() {
@@ -65,6 +66,10 @@ export default class World {
         this._activeTarget = target;
         if (target) {
             target.object.isActive = true;
+            this.pointLight.positionTarget.x = target.object.position.x;
+            this.pointLight.positionTarget.y = target.object.position.y;
+            this.pointLight2.positionTarget.x = -1 * target.object.position.x;
+            this.pointLight2.positionTarget.y = -1 * target.object.position.y;
         }
     }
 
@@ -76,12 +81,15 @@ export default class World {
         const vals = [];
         this.actors.forEach(
             (actor) => {
-                vals.push(actor);
+                if (actor.isMesh) {
+                    vals.push(actor);
+                }
                 if (actor.onTick) {
                     actor.onTick(deltaSeconds);
                 }
             }
         );
+        this.menu.onTick(deltaSeconds);
         this.camera.onTick(deltaSeconds);
         this.raycaster.setFromCamera( this.mouseVector, this.camera );
         const intersects = this.raycaster.intersectObjects( vals );
@@ -90,10 +98,6 @@ export default class World {
         } else {
             this.activeTarget = null;
         }
-        this.pointLight.positionTarget.set(0, 8*Math.random()*Math.cos(this.then), -1);
-        this.pointLight.onTick(deltaSeconds);
-        this.pointLight2.positionTarget.set(8*Math.random()*Math.sin(this.then), 0, -1);
-        this.pointLight2.onTick(deltaSeconds);
         this.renderer.render(this.scene, this.camera);
     };
 
@@ -106,66 +110,36 @@ export default class World {
     };
 
     setupScene() {
-        this.scene.background = new Color(0xcacaca);
-        // var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-        // this.scene.add( directionalLight );
-        // directionalLight.position.z = .5;
-        //this.scene.fog = new THREE.FogExp2( 0x0000ff, .5);
-        const lOffset = 5;
-        const points = [
-            [-lOffset, lOffset, 10], [lOffset, lOffset, 10], [-lOffset, -lOffset, 10], [lOffset, -lOffset, 10]
-        ];
-        this.lightTarget = new BaseObject();
-        this.lightTarget.speed = 4;
-        this.scene.add(this.lightTarget);
-        this.actors.set(this.uid, this.lightTarget);
-        for (let i = 0; i < 4; i++) {
-            const spotLight = new THREE.SpotLight( 0xffffff, 1, 20, 0.1 );
-            spotLight.position.set( ...points[i]);
-
-            spotLight.castShadow = true;
-
-            spotLight.shadow.mapSize.width = 1024;
-            spotLight.shadow.mapSize.height = 1024;
-
-            spotLight.shadow.camera.near = 0;
-            spotLight.shadow.camera.far = 40;
-            spotLight.shadow.camera.fov = 30;
-            spotLight.target = this.lightTarget;
-
-            this.scene.add( spotLight );
-        }
+        this.scene.background = new Color(0x020203);
+        this.directionalLight = new DirectLight( 0xffffff, 0.01 );
+        this.directionalLight.speed = 2;
+        this.directionalLight.position.set(0, 1, 1);
+        this.scene.add( this.directionalLight );
+        this.actors.set(this.uid, this.directionalLight);
 
         const PLight = createObjectClass(THREE.PointLight);
-        this.pointLight = new PLight(0xff0000, 1, 3);
-        this.pointLight.speed = 4;
-        this.pointLight.positionTarget.set(0, 0, 0);
+
+        this.pointLight = new PLight(0xff4600, 1, 3);
+        this.pointLight.speed = 2;
+        this.pointLight.positionTarget.set(-2, 2, 1);
         this.scene.add(this.pointLight);
-        this.pointLight2 = new PLight(0x0000ff, 1, 3);
-        this.pointLight2.speed = 4;
-        this.pointLight2.positionTarget.set(0, 0, 0);
+        this.actors.set(this.uid, this.pointLight);
+        this.pointLight2 = new PLight(0x5600ff, 1, 3);
+        this.pointLight2.speed = 2;
+        this.pointLight2.positionTarget.set(2, -2, 1);
         this.scene.add(this.pointLight2);
+        this.actors.set(this.uid, this.pointLight2);
     }
 
     setupActors() {
-        const pattern = [[-1, 1, 0], [1,1,0], [-1, -1, 0], [1, -1, 0]];
-        const points = 20;
-        const positions = [];
-        for (let i = 0; i < points; i ++) {
-            positions[i] = pattern[i%4].map(
-                (pp) => pp*0.5*(i+1)
-            )
-        }
-        const scalar = 1;
-        const cols = 11;
-        const rows = 11;
-        const distVal = cols/10;
+        const cols = 20;
+        const rows = 20;
 
 
         for (let i = 0; i < cols; i ++) {
-            const y = 10 - i*2;
+            const y = cols - 1 - i*2;
             for (let j = 0; j < rows; j++) {
-                const x = - 10 + j*2;
+                const x = - rows + 1 + j*2;
                 const cube = new BaseMesh(this.camera);
                 cube.positionTarget.set(x, y, -1);
                 this.actors.set(this.uid, cube);
@@ -175,29 +149,55 @@ export default class World {
         }
     }
 
-    setupCamera() {
-        this.camera.positionTarget.z = 5;
-        let a = true;
-        document.body.onclick = () => {
-            if (this.activeTarget) {
-                this.camera.positionTarget.z = this.activeTarget.object.position.z + .4;
-                this.camera.positionTarget.x = this.activeTarget.object.position.x;
-                this.camera.positionTarget.y = this.activeTarget.object.position.y;
-                this.camera.lookTarget = this.activeTarget.object.position;
-                this.activeTarget.object.lookTarget = this.camera.position;
-                const {x, y, z} = this.activeTarget.object.position;
-                this.lightTarget.positionTarget.set(x, y, z);
-                a = false;
-            } else {
-                this.camera.positionTarget.z = 5;
-                this.camera.positionTarget.x = 0;
-                this.camera.positionTarget.y = 0;
-                this.camera.lookTarget = zeroVector;
-                this.lightTarget.positionTarget.set(0, 0, 0);
-                if (this.lastTarget) {
-                    this.lastTarget.object.lookTarget = zeroVector;
+    showActiveContent() {
+        this.menu.hide();
+        this.actors.forEach(
+            (actor) => {
+                if (actor.isMesh) {
+                    actor.goCloser();
                 }
+            }
+        );
+        //this.camera.positionTarget.z -= 4;
+        setTimeout(() => {
+            this.directionalLight.intensityTarget = 2;
+            this.camera.positionTarget.z -= 2;
+        }, 2000);
+    }
+
+    hideActiveContent() {
+        this.camera.positionTarget.z += 2;
+        this.directionalLight.intensityTarget = 0.01;
+        this.menu.show();
+        this.actors.forEach(
+            (actor) => {
+                if (actor.isMesh) {
+                    actor.goBack();
+                }
+            }
+        )
+    }
+
+    setupCamera() {
+        this.camera.positionTarget.z = 8;
+        let a = true;
+        this.menu.links.forEach((l) => {
+            l.node.onclick = (e) => {
+                if (this.selectedLink && this.selectedLink !== l) {
+                    this.selectedLink.isActive = false;
+                }
+                this.selectedLink = l;
+                this.activeContent = l.content;
+                l.isActive = true;
+            }
+        });
+        document.body.onclick = () => {
+            if (a) {
+                a = false;
+                this.showActiveContent();
+            } else {
                 a = true;
+                this.hideActiveContent();
             }
         }
     }

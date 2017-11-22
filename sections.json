@@ -1,0 +1,170 @@
+{
+  "sections": [
+    {
+      "title": "General Information",
+      "content": [
+        "First name: Leonid",
+        "Last name: Lazaryev",
+        "Date of birth: 12.02.1988",
+        "Civil status: Married"
+      ]
+    },
+    {
+      "title": "Contact",
+      "content": [
+        "Email: <a href='mailto:leonidlazaryev@gmail.com'>leonidlazaryev@gmail.com</a>",
+        "Phone: <a href='tel:+420777448738'>+420777448738</a>",
+        "Linkedin: <a href='https://www.linkedin.com/in/leonid-lazaryev-48411896/'>https://www.linkedin.com/in/leonid-lazaryev-48411896/</a>",
+        "Github: <a href='https://github.com/pwroff'>https://github.com/pwroff</a>",
+        "Facebook: <a href='https://www.facebook.com/leonid.lazaryev'>https://www.facebook.com/leonid.lazaryev</a>"
+      ]
+    },
+    {
+      "title": "Education",
+      "content": [
+        [
+          "Transcarpathian college of management, business and information technologies 'Erudit'",
+          "Associates degree, Informatics",
+          "2002 - 2007"
+        ],
+        [
+          "Lviv National Politechnical University",
+          "Bachelor of Science, Project Management",
+          "2007 - 2010"
+        ],
+        [
+          "Unicorn College",
+          "Information Technologies",
+          "2013 - 2015"
+        ]
+      ]
+    },
+    {
+      "title": "Technical Experience",
+      "content": [
+        [
+          "kitchenfeelings.net (Food blog, out of order)",
+          "Full stack developer, Co Founder, Co Owner",
+          "Jul 2015 - Jul 2016"
+        ],
+        [
+          "AppToCloud.com",
+          "Javascript developer",
+          "May 2015 - Feb 2018"
+        ],
+        [
+          "Others",
+          "Reference list below"
+        ]
+      ]
+    },
+    {
+      "title": "Non technical experience",
+      "content": [
+        [
+          "E-shop svetovod.com.ua",
+          "Sales consultant, shop administration, content management",
+          "Jul 2010 - Sep 2011"
+        ],
+        [
+          "Nightclub “Kashtan”",
+          "Barman",
+          "Mar 2006 - Jun 2008"
+        ],
+        [
+          "Hotel “Prague”",
+          "Barman,  administrator",
+          "Jul 2008 - May 2009"
+        ],
+        [
+          "Bar “Kashtan Lounge”",
+          "Barman, barista",
+          "Apr 2009 - Jun 2010"
+        ],
+        [
+          "Nightclub “Panorama”",
+          "Barman",
+          "Nov 2011 - Sep 2012"
+        ]
+      ]
+    },
+    {
+      "title": "Certificates and Awards",
+      "content": [
+        [
+          "Czech Language level B1",
+          "UJOP Krystal, Prague",
+          "2013"
+        ],
+        [
+          "React Contest winner",
+          "STRV, Prague",
+          "2017"
+        ]
+      ]
+    },
+    {
+      "title": "Skill set",
+      "content": [
+        {
+          "title": "Languages",
+          "content": [
+            "English - advanced",
+            "Czech - advanced",
+            "Russian - native",
+            "Ukrainian - native"
+          ]
+        },
+        {
+          "title": "Programming Languages",
+          "content": [
+            "Frontend (Javascript + HTML + CSS) - exceptional",
+            "Node.js - exceptional",
+            "C++  - good",
+            "GLSL - basic",
+            "C# - basic",
+            "Python - basic",
+            "Ruby - basic",
+            "Swift - basic"
+          ]
+        },
+        {
+          "title": "Web Frameworks, tools, libraries, APIs…",
+          "content": [
+            "ES6", "Canvas", "WebGL", "WebAudio", "React.js", "Redux", "SASS", "LESS", "svg", "three.js", "Express", "Apollo", "web sockets", "graphql", "REST"
+          ]
+        },
+        {
+          "title": "Databases",
+          "content": [
+            "MongoDB", "Redis", "Postgres", "MariaDB"
+          ]
+        },
+        {
+          "title": "Game Engines",
+          "content": [
+            "Unreal Engine - mid-level (~ 70 hours of tutorials)",
+            "Unity - basic (~ 20 hours of tutorials)"
+          ]
+        },
+        {
+          "title": "Others",
+          "content": [
+            "git", "bash", "VS", "Xcode"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Other References",
+      "content": [
+        "<a href='https://www.npmjs.com/package/colorer'>colorer</a> JS color manipulation library",
+        "Eventio app - STRV React Contest <a href='https://eventio-contest.herokuapp.com'>https://eventio-contest.herokuapp.com</a> frontend + partially backend (client server + graphql middleware + sessions manager). API might be down already.",
+        "<a href='http://cz.emclient.com/'>http://cz.emclient.com/</a> index page",
+        "<a href='https://www.icewarp.com/'>https://www.icewarp.com/</a> 4 features animations on homepage.",
+       "<a href='https://licensemanager.emclient.com/account/login?returnUrl='>https://licensemanager.emclient.com</a> email client licensing (credentials required)"
+      ]
+    }
+
+  ]
+}
