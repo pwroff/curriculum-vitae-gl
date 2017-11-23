@@ -33,7 +33,7 @@ export class Text {
             this.node.innerHTML = this.targetText;
             return this.startA = 0;
         }
-        this.currentTextLength = ctL + (ttL - ctL)*ds*5;
+        this.currentTextLength = ctL + (ttL - ctL)*ds*4;
         this.node.innerHTML = this.text.substr(0, Math.round(this.currentTextLength));
     }
 

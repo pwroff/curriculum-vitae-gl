@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import BaseMesh, {BaseObject, createObjectClass, DirectLight} from "../objects/BaseMesh";
 import Content from "../objects/Content";
 
-function getRandomIntInclusive(min, max) {
+export function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
@@ -64,14 +64,24 @@ export default class World {
         if (this._activeTarget) {
             this.lastTarget = this._activeTarget;
             this.lastTarget.object.isActive = false;
+            if (this.lastTarget.object instanceof BaseMesh) {
+                this.lastTarget.object.onMouseLeave(this.mouseVector);
+            }
         }
         this._activeTarget = target;
         if (target) {
             target.object.isActive = true;
-            this.pointLight.positionTarget.x = target.object.position.x;
-            this.pointLight.positionTarget.y = target.object.position.y;
-            this.pointLight2.positionTarget.x = -1 * target.object.position.x;
-            this.pointLight2.positionTarget.y = -1 * target.object.position.y;
+            if (target.object instanceof BaseMesh) {
+                target.object.onMouseEnter(this.mouseVector);
+            }
+            if (!this.pointLight.lockTarget) {
+                this.pointLight.positionTarget.x = target.object.position.x;
+                this.pointLight.positionTarget.y = target.object.position.y;
+            }
+            if (!this.pointLight2.lockTarget) {
+                this.pointLight2.positionTarget.x = -1 * target.object.position.x;
+                this.pointLight2.positionTarget.y = -1 * target.object.position.y;
+            }
         }
     }
 
@@ -142,6 +152,13 @@ export default class World {
     }
 
     setupActors() {
+
+        document.body.onclick = () => {
+            if (this.activeTarget && this.activeTarget.object instanceof BaseMesh) {
+                this.lastTarget.object.onClick(this.mouseVector);
+            }
+        };
+
         const cols = 20;
         const rows = 20;
 
@@ -150,13 +167,15 @@ export default class World {
             const y = cols - 1 - i*2;
             for (let j = 0; j < rows; j++) {
                 const x = - rows + 1 + j*2;
-                const cube = new BaseMesh(this.camera);
+                const cube = new BaseMesh();
                 cube.positionTarget.set(x, y, -1);
                 this.actors.set(this.uid, cube);
                 this.scene.add( cube );
             }
 
         }
+
+
     }
 
     showActiveContent() {
@@ -170,6 +189,12 @@ export default class World {
             }
         );
         //this.camera.positionTarget.z -= 4;
+        this.pointLight.lockTarget = true;
+        this.pointLight2.lockTarget = true;
+        this.pointLight.positionTarget.x = 0;
+        this.pointLight.positionTarget.y = 0;
+        this.pointLight2.positionTarget.x = 0;
+        this.pointLight2.positionTarget.y = 0;
         this._tm = setTimeout(() => {
             this.directionalLight.intensityTarget = 2;
             this.camera.positionTarget.z = 6;
@@ -180,10 +205,12 @@ export default class World {
                 this._tm = null;
             }, 500)
 
-        }, 750);
+        }, 1500);
     }
 
     hideActiveContent() {
+        this.pointLight.lockTarget = false;
+        this.pointLight2.lockTarget = false;
         this.contentShown = false;
         if (this._tm) {
             clearTimeout(this._tm);

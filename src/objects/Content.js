@@ -18,7 +18,7 @@ export default class Content {
             padding: '2rem',
             color: '#1a1a1a',
             margin: 'auto',
-            maxWidth: '70%'
+            maxWidth: '90%'
         });
         this.node = node;
         appendTo.appendChild(node);

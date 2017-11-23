@@ -14,11 +14,12 @@ const menu = new Menu([
             "Last name: Lazaryev",
             "Date of birth: 12.02.1988",
             "Civil status: Married",
+            "",
             "Email: <a href='mailto:leonidlazaryev@gmail.com'>leonidlazaryev@gmail.com</a>",
             "Phone: <a href='tel:+420777448738'>+420777448738</a>",
-            "Linkedin: <a target='_blank' href='https://www.linkedin.com/in/leonid-lazaryev-48411896/'>https://www.linkedin.com/in/leonid-lazaryev-48411896/</a>",
-            "Github: <a target='_blank' href='https://github.com/pwroff'>https://github.com/pwroff</a>",
-            "Facebook: <a target='_blank' href='https://www.facebook.com/leonid.lazaryev'>https://www.facebook.com/leonid.lazaryev</a>"
+            "Linkedin: <a target='_blank' href='https://www.linkedin.com/in/leonid-lazaryev-48411896/'>leonid-lazaryev-48411896</a>",
+            "Github: <a target='_blank' href='https://github.com/pwroff'>pwroff</a>",
+            "Facebook: <a target='_blank' href='https://www.facebook.com/leonid.lazaryev'>leonid.lazaryev</a>"
         ]
     },
     {

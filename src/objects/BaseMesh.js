@@ -48,18 +48,34 @@ export class DirectLight extends createObjectClass(DirectionalLight) {
 }
 const mval = 0.5;
 export default class BaseMesh extends Mesh {
-    constructor(characterCamera) {
-        const cubeMaterial = new MeshPhongMaterial( {
+    constructor(geometry, material) {
+        const cubeMaterial = material || new MeshPhongMaterial( {
             color: 0xffffff
         } );
-        const geometry = new BoxGeometry( 1, 1, .1 );
-        super(geometry, cubeMaterial);
+        const mgeometry = geometry || new BoxGeometry( 1, 1, .1 );
+        super(mgeometry, cubeMaterial);
         this.positionTarget = new Vector3(0, 0, 0);
         this.lookTarget = new Vector3(0, 0, 0);
         this.look = new Vector3(0, 0, 0);
         this.isActive = false;
         this.isLocked = false;
         this.speed = 3;
+        this.defaultHandler = (e) => {};
+        this.onclick = null;
+    }
+
+    set onclick(func) {
+        this._onclick = func || this.defaultHandler;
+    }
+
+    onMouseEnter(e) {
+    }
+
+    onMouseLeave(e) {
+    }
+
+    onClick(e) {
+        this._onclick(e);
     }
 
     onTick(ds) {
