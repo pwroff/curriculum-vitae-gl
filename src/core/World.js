@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import BaseMesh, {BaseObject, createObjectClass, DirectLight} from "../objects/BaseMesh";
+import Content from "../objects/Content";
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -21,6 +22,7 @@ const zeroVector = new Vector3(0, 0, 0);
 
 export default class World {
     constructor(scene, renderer, camera, menu) {
+        renderer.sortObjects = false;
         this.renderer = renderer;
         this.scene = scene;
         this.camera = camera;
@@ -91,6 +93,10 @@ export default class World {
         );
         this.menu.onTick(deltaSeconds);
         this.camera.onTick(deltaSeconds);
+        this.directionalLight.onTick(deltaSeconds);
+        if (this.activeContent) {
+            this.activeContent.onTick(deltaSeconds);
+        }
         this.raycaster.setFromCamera( this.mouseVector, this.camera );
         const intersects = this.raycaster.intersectObjects( vals );
         if ( intersects.length > 0) {
@@ -111,11 +117,15 @@ export default class World {
 
     setupScene() {
         this.scene.background = new Color(0x020203);
-        this.directionalLight = new DirectLight( 0xffffff, 0.01 );
+        this.directionalLight = new DirectLight( 0xffffff, 0 );
         this.directionalLight.speed = 2;
-        this.directionalLight.position.set(0, 1, 1);
+        this.directionalLight.position.set(0, 2, 5);
+        this.lightTarget = new BaseObject();
+        this.lightTarget.positionTarget.set(0, 0, -3);
+        this.scene.add(this.lightTarget);
+        this.directionalLight.target = this.lightTarget;
         this.scene.add( this.directionalLight );
-        this.actors.set(this.uid, this.directionalLight);
+        this.actors.set(this.uid, this.lightTarget);
 
         const PLight = createObjectClass(THREE.PointLight);
 
@@ -150,6 +160,7 @@ export default class World {
     }
 
     showActiveContent() {
+        this.contentShown = true;
         this.menu.hide();
         this.actors.forEach(
             (actor) => {
@@ -159,15 +170,29 @@ export default class World {
             }
         );
         //this.camera.positionTarget.z -= 4;
-        setTimeout(() => {
+        this._tm = setTimeout(() => {
             this.directionalLight.intensityTarget = 2;
-            this.camera.positionTarget.z -= 2;
-        }, 2000);
+            this.camera.positionTarget.z = 6;
+            this._tm = setTimeout(() => {
+                if (this.activeContent) {
+                    this.activeContent.show();
+                }
+                this._tm = null;
+            }, 500)
+
+        }, 750);
     }
 
     hideActiveContent() {
-        this.camera.positionTarget.z += 2;
-        this.directionalLight.intensityTarget = 0.01;
+        this.contentShown = false;
+        if (this._tm) {
+            clearTimeout(this._tm);
+        }
+        if (this.activeContent) {
+            this.activeContent.hide();
+        }
+        this.camera.positionTarget.z = 8;
+        this.directionalLight.intensityTarget = 0;
         this.menu.show();
         this.actors.forEach(
             (actor) => {
@@ -183,23 +208,23 @@ export default class World {
         let a = true;
         this.menu.links.forEach((l) => {
             l.node.onclick = (e) => {
+                if (this.contentShown) {
+                    this.hideActiveContent();
+                    return;
+                }
                 if (this.selectedLink && this.selectedLink !== l) {
                     this.selectedLink.isActive = false;
                 }
+                if (this.activeContent) {
+                    this.activeContent.remove();
+                    delete this.activeContent;
+                }
                 this.selectedLink = l;
-                this.activeContent = l.content;
+                this.activeContent = new Content(l.content);
                 l.isActive = true;
+                this.showActiveContent();
             }
         });
-        document.body.onclick = () => {
-            if (a) {
-                a = false;
-                this.showActiveContent();
-            } else {
-                a = true;
-                this.hideActiveContent();
-            }
-        }
     }
 
     spawnHelpers() {

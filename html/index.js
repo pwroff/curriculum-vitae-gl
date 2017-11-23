@@ -30,7 +30,7 @@ module.exports = (extra) =>
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link href="https://fonts.googleapis.com/css?family=Cutive+Mono|Open+Sans|Orbitron|Rubik:400,900|Share+Tech+Mono|Space+Mono" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans|Share+Tech+Mono|Space+Mono" rel="stylesheet">
       <title>Leonid Lazarayev - cvgl</title>
       <style>
         body, html {
@@ -42,11 +42,11 @@ module.exports = (extra) =>
             font-size: 10px;
         }
         body {
-            font-family: 'Open sans', monospace;
+            font-family: 'Open sans', sans-serif;
             font-size: 2rem;
             color: #333333;
         }
-        h1, h2, h3 {
+        h1, h2, h3, strong {
             font-family: 'Space Mono', monospace;
             font-weight: 400;
         }
@@ -58,9 +58,13 @@ module.exports = (extra) =>
             font-size: 150%;
             margin-bottom: 0;
         }
+        strong {
+            font-size: 110%;
+        }
         a, a:hover {
+            font-family: 'Space Mono', monospace;
             text-decoration: none;
-            color: #2244f3;
+            color: #ef5216;
         }
         section {
             width: 95%;
@@ -102,10 +106,32 @@ module.exports = (extra) =>
         li > ul {
             padding-bottom: 3rem;
         }
+        #content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            box-sizing: border-box;
+            padding-right: 20%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            width: 120%;
+            height: 100%;
+            background-color: transparent;
+        }
+        .absEmpty {
+            position: relative;
+            transform: translate3d(0,0,0) scale(1);
+        }
+        .absEmpty:empty {
+            transform: scale(0);
+        }
+       
        </style>
     </head>
     <body>
       <main>${main}</main>
+      <section id='content'></section>
       <script type="application/javascript" src="/public/bundle.js" ></script>
       <script type="application/javascript" >
         ${extra}

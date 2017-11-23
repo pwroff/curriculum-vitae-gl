@@ -1,22 +1,25 @@
 
-const setStyle = (node, style) => {
+export const setStyle = (node, style) => {
     for (let k of Object.keys(style)) {
         node.style[k] = style[k];
     }
 };
-const setAttribute = (node, attrs) => {
+export const setAttribute = (node, attrs) => {
     for (let k of Object.keys(attrs)) {
         node.setAttribute(k, attrs[k]);
     }
 };
 
-class Text {
-    constructor({tag, text, style = {}}) {
+export class Text {
+    constructor({tag, text, style = {}, initial = text}) {
         this.text = text;
         this.targetText = text;
-        this.currentTextLength = text.length;
+        this.currentTextLength = initial.length;
         this.node = document.createElement(tag);
-        this.node.innerHTML = text;
+        this.node.innerHTML = this.text.substr(0, this.currentTextLength);
+        const testNode = document.createElement(tag);
+        testNode.innerHTML = text;
+        this.maxLength = testNode.innerHTML.length;
         setStyle(this.node, style);
         this.startA = 0;
     }
@@ -24,11 +27,14 @@ class Text {
     execute(ds) {
         const ttL = this.targetText.length;
         const ctL = this.currentTextLength;
-        if (ttL === this.node.innerText.length) {
+        const nLL = this.node.innerHTML.length;
+
+        if (nLL === ttL || this.currentTextLength > this.maxLength) {
+            this.node.innerHTML = this.targetText;
             return this.startA = 0;
         }
         this.currentTextLength = ctL + (ttL - ctL)*ds*5;
-        this.node.innerText = this.text.substr(0, Math.round(this.currentTextLength));
+        this.node.innerHTML = this.text.substr(0, Math.round(this.currentTextLength));
     }
 
     onTick(ds) {
@@ -56,8 +62,6 @@ class Link extends Text {
             textTransform: 'uppercase',
             fontFamily: "'Share Tech Mono', monospace",
             fontSize: '1.5em',
-            minWidth: '1px',
-            height: '35px',
             margin: 0,
             boxSizing: 'border-box',
             padding: '.2rem',
@@ -66,6 +70,7 @@ class Link extends Text {
             width: 'auto',
             ...style
         }, tag: 'li'});
+        this.node.className = 'absEmpty';
 
         this.isActive = false;
         this.content = content;
@@ -95,10 +100,10 @@ export default class Menu {
             position: 'absolute',
             top: 0,
             left: 0,
-            width: '100%',
+            width: 'auto',
             maxWidth: '450px',
             padding: '20px',
-            zIndex: 2
+            zIndex: 3
         });
         this.node = plc;
         document.body.appendChild(plc);

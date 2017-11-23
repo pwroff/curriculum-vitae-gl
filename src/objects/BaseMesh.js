@@ -42,8 +42,8 @@ export class DirectLight extends createObjectClass(DirectionalLight) {
     }
 
     onTick(ds) {
-        super.onTick(ds);
         this.intensity += lerp(this.intensity, this.intensityTarget, ds, this.speed);
+        super.onTick(ds);
     }
 }
 const mval = 0.5;
