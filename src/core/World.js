@@ -1,4 +1,10 @@
-import * as THREE from 'three';
+import {
+    Color,
+    Raycaster,
+    Vector2,
+    Vector3,
+    PointLight
+} from 'three';
 import BaseMesh, {BackMesh, BaseObject, createObjectClass, DirectLight} from "../objects/BaseMesh";
 import Content from "../objects/Content";
 
@@ -7,14 +13,6 @@ export function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
 }
-
-const {
-    Color,
-    Raycaster,
-    Vector2,
-    Vector3
-} = THREE;
-
 window.deltaSeconds = 0;
 window.W = window.innerWidth;
 window.H = window.innerHeight;
@@ -137,7 +135,7 @@ export default class World {
         this.scene.add( this.directionalLight );
         this.actors.set(this.uid, this.lightTarget);
 
-        const PLight = createObjectClass(THREE.PointLight);
+        const PLight = createObjectClass(PointLight);
 
         this.pointLight = new PLight(0xff4600, 1, 3);
         this.pointLight.speed = 2;

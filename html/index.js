@@ -133,6 +133,21 @@ module.exports = (bundle, extra) =>
         .absEmpty:empty {
             transform: scale(0);
         }
+        .poweredBy {
+            position: absolute;
+            z-index: 50;
+            color: #777!important;
+            bottom: 0;
+            right: 0;
+            padding: 20px;
+            max-width: 100%;
+            font-size: 80%;
+            line-height: 7px;
+            text-align: right;
+        }
+        .poweredBy a {
+            opacity: .7;
+        }
        
        </style>
     </head>
@@ -143,7 +158,10 @@ module.exports = (bundle, extra) =>
       <script type="application/javascript" >
         ${extra}
        </script>
-      
+      <div class="poweredBy">
+      <p>by Leonid Lazaryev</p>
+      <a href="https://github.com/pwroff/curriculum-vitae-gl" target="_blank">source at Github</a>
+        </div>
     </body>
 </html>
 `;
