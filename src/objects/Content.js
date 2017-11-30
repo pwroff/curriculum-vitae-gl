@@ -17,7 +17,7 @@ export default class Content {
             boxSizing: 'border-box',
             padding: '2rem',
             color: '#1a1a1a',
-            margin: 'auto',
+            margin: "0 5%",
             maxWidth: '90%'
         });
         this.node = node;

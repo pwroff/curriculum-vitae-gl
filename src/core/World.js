@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import BaseMesh, {BaseObject, createObjectClass, DirectLight} from "../objects/BaseMesh";
+import BaseMesh, {BackMesh, BaseObject, createObjectClass, DirectLight} from "../objects/BaseMesh";
 import Content from "../objects/Content";
 
 export function getRandomIntInclusive(min, max) {
@@ -175,7 +175,9 @@ export default class World {
 
         }
 
-
+        this.backArrow = new BackMesh();
+        this.scene.add(this.backArrow);
+        this.actors.set(this.uid, this.backArrow);
     }
 
     showActiveContent() {
@@ -199,9 +201,11 @@ export default class World {
             this.directionalLight.intensityTarget = 2;
             this.camera.positionTarget.z = 6;
             this._tm = setTimeout(() => {
+                this.camera.positionTarget.z = 2;
                 if (this.activeContent) {
                     this.activeContent.show();
                 }
+                this.backArrow.goCloser();
                 this._tm = null;
             }, 500)
 
@@ -211,6 +215,7 @@ export default class World {
     hideActiveContent() {
         this.pointLight.lockTarget = false;
         this.pointLight2.lockTarget = false;
+        this.backArrow.goBack();
         this.contentShown = false;
         if (this._tm) {
             clearTimeout(this._tm);

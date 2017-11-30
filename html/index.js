@@ -123,6 +123,13 @@ module.exports = (extra) =>
             position: relative;
             transform: translate3d(0,0,0) scale(1);
         }
+        .absEmpty:before {
+            position: absolute;
+            left: -40px;
+            display: block;
+            content: '<';
+    
+        }
         .absEmpty:empty {
             transform: scale(0);
         }

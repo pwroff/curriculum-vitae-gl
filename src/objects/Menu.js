@@ -63,6 +63,7 @@ class Link extends Text {
             fontFamily: "'Share Tech Mono', monospace",
             fontSize: '1.5em',
             margin: 0,
+            position: 'relative',
             boxSizing: 'border-box',
             padding: '.2rem',
             lineHeight: '35px',
@@ -74,17 +75,44 @@ class Link extends Text {
 
         this.isActive = false;
         this.content = content;
+        this.targetMove = 0;
+        this.move = 0;
+        this.startB = 0;
     }
 
-    createTextNode(tag, content) {
-        return new Text({tag, text: content});
+    buttonExecute(ds) {
+        const next = (this.targetMove - this.move)*ds*5;
+        this.move += next;
+        if (Math.abs(next) <= 0.01) {
+            this.startB = 0;
+            this.move = this.targetMove;
+        }
+        this.node.style.left = `${this.move}px`;
     }
 
-    hide(...args) {
+    onTick(ds) {
+        super.onTick(ds);
+        if (this.isActive && this.startB > 0) {
+            return this.buttonExecute(ds);
+        }
+    }
+
+    hide(ts, ...args) {
         if (this.isActive) {
+            this.startB = ts;
+            this.targetMove = 50;
             return;
         }
-        return super.hide(...args);
+        return super.hide(ts, ...args);
+    }
+
+    show(ts, ...args) {
+        if (this.isActive) {
+            this.startB = ts;
+            this.targetMove = 0;
+            return;
+        }
+        return super.show(ts, ...args);
     }
 }
 
