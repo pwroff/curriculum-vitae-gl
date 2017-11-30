@@ -22,7 +22,7 @@ const main = sections.map((section) => {
 `);
 }).join('');
 
-module.exports = (extra) =>
+module.exports = (bundle, extra) =>
     `
 <!doctype html>
 <html lang="en">
@@ -139,7 +139,7 @@ module.exports = (extra) =>
     <body>
       <main>${main}</main>
       <section id='content'></section>
-      <script type="application/javascript" src="/public/bundle.js" ></script>
+      ${bundle}
       <script type="application/javascript" >
         ${extra}
        </script>

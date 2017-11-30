@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devel": "node index.js"
+    "devel": "NODE_ENV=development node index.js",
+    "build": "export NODE_ENV=production && ./node_modules/.bin/webpack",
+    "start": "npm run build && NODE_ENV=production node index.js",
+    "pack": "npm run build && node packer.js"
   },
   "repository": {
     "type": "git",

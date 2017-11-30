@@ -9,7 +9,7 @@ const server = Server(app);
 const {PORT: envPort, NODE_ENV: ENV} = process.env;
 const PORT = envPort || 4123;
 const publicPath = '/public';
-const isDevelopment = true;
+const isDevelopment = ENV !== 'production';
 
 app.enable('trust proxy');
 app.use(bodyParser.urlencoded({extended: true}));
@@ -82,7 +82,10 @@ app.get('/', (req, res) => {
         extra = sock;
     }
 
-    res.send(html(extra));
+    res.send(html(
+        '<script type="application/javascript" src="/public/bundle.js" ></script>',
+        extra
+    ));
     res.end()
 });
 
