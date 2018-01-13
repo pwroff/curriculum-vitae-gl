@@ -47,7 +47,7 @@ const menu = new Menu([
             "",
             "AppToCloud.com",
             "Javascript developer",
-            "May 2015 - current position",
+            "May 2015 - February 2018",
             "",
             "Others",
             "Reference list below"
