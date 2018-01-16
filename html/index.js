@@ -4,10 +4,12 @@ const inner = (node) => {
     if (Array.isArray(node)) {
         return `<ul><li>${node.map((n) => inner(n)).join('')}</li></ul>`;
     } else if (typeof node === 'object') {
-        return `<ul>
-<li><h3>${node.title}</h3></li>
-${inner(node.content)}
-</ul>`
+        return `
+<ul>
+   <li><h3>${node.text}</h3></li>
+       ${inner(node.content)}
+</ul>
+`
     }
     return `<li>${node}</li>`
 };
@@ -16,7 +18,7 @@ const main = sections.map((section) => {
 
     return (`
 <section>
-    <h2>${section.title}</h2>
+    <h2>${section.text}</h2>
     ${inside}
 </section>
 `);
@@ -154,6 +156,9 @@ module.exports = (bundle, extra) =>
     <body>
       <main>${main}</main>
       <section id='content'></section>
+      <script type="application/javascript">
+            window.__info = ${JSON.stringify(info)};
+       </script>
       ${bundle}
       <script type="application/javascript" >
         ${extra}

@@ -72,7 +72,6 @@ class Link extends Text {
             ...style
         }, tag: 'li'});
         this.node.className = 'absEmpty';
-
         this.isActive = false;
         this.content = content;
         this.targetMove = 0;

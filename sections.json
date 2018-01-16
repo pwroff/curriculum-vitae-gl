@@ -1,168 +1,174 @@
 {
   "sections": [
     {
-      "title": "General Information",
+      "text": "bio & contact",
       "content": [
         "First name: Leonid",
         "Last name: Lazaryev",
         "Date of birth: 12.02.1988",
-        "Civil status: Married"
-      ]
-    },
-    {
-      "title": "Contact",
-      "content": [
+        "Civil status: Married",
+        "",
         "Email: <a href='mailto:leonidlazaryev@gmail.com'>leonidlazaryev@gmail.com</a>",
         "Phone: <a href='tel:+420777448738'>+420777448738</a>",
-        "Linkedin: <a href='https://www.linkedin.com/in/leonid-lazaryev-48411896/'>https://www.linkedin.com/in/leonid-lazaryev-48411896/</a>",
-        "Github: <a href='https://github.com/pwroff'>https://github.com/pwroff</a>",
-        "Facebook: <a href='https://www.facebook.com/leonid.lazaryev'>https://www.facebook.com/leonid.lazaryev</a>"
+        "Linkedin: <a target='_blank' href='https://www.linkedin.com/in/leonid-lazaryev-48411896/'>https://www.linkedin.com/in/leonid-lazaryev-48411896/</a>",
+        "Github: <a target='_blank' href='https://github.com/pwroff'>https://github.com/pwroff</a>",
+        "Facebook: <a target='_blank' href='https://www.facebook.com/leonid.lazaryev'>https://www.facebook.com/leonid.lazaryev</a>"
       ]
     },
     {
-      "title": "Education",
+      "text": "Education",
+      "content": [
+        "Transcarpathian college of management, business and information technologies 'Erudit'",
+        "Associates degree, Informatics",
+        "2002 - 2007",
+        "",
+        "Lviv National Politechnical University",
+        "Bachelor of Science, Project Management",
+        "2007 - 2010",
+        "",
+        "Unicorn College",
+        "Information Technologies",
+        "2013 - 2015"
+      ]
+    },
+    {
+      "text": "Experience",
+      "content": [
+        "kitchenfeelings.net (Food blog, out of order)",
+        "Full stack developer, Co Founder, Co Owner",
+        "Jul 2015 - Jul 2016",
+        "",
+        "AppToCloud.com",
+        "Javascript developer",
+        "May 2015 - February 2018",
+        "",
+        "Others",
+        "Reference list below"
+      ]
+    },
+    {
+      "text": "Skill set",
       "content": [
         [
-          "Transcarpathian college of management, business and information technologies 'Erudit'",
-          "Associates degree, Informatics",
-          "2002 - 2007"
+          "<strong>Languages</strong>",
+          "English - advanced",
+          "Czech - advanced",
+          "Russian - native",
+          "Ukrainian - native"
         ],
+        "",
         [
-          "Lviv National Politechnical University",
-          "Bachelor of Science, Project Management",
-          "2007 - 2010"
+          "<strong>Programming Languages</strong>",
+          "Frontend (Javascript + HTML + CSS) - exceptional",
+          "ES6 - exceptional",
+          "Node.js - exceptional",
+          "C++  - good",
+          "C# - ok",
+          "GLSL - basic",
+          "Python - basic",
+          "Ruby - basic",
+          "Swift - basic"
         ],
+        "",
         [
-          "Unicorn College",
-          "Information Technologies",
-          "2013 - 2015"
+          "<strong>Frameworks, tools, libraries, APIs…</strong>",
+          "Canvas", "WebGL", "WebAudio",
+          "React.js", "Redux", "SASS", "LESS", "svg",
+          "three.js", "Express", "Apollo", "web sockets",
+          "graphql", "REST", "Basic OpenGL"
+        ],
+        "",
+        [
+          "<strong>Databases</strong>",
+          "MongoDB",
+          "Redis",
+          "Postgres"
+        ],
+        "",
+        [
+          "<strong>Game Engines</strong>",
+          "Unreal Engine - mid-level (~ 90 hours of tutorials)",
+          "Unity - basic (~ 40 hours of tutorials)"
+        ],
+        "",
+        [
+          "<strong>Others</strong>",
+          "git", "bash", "VS", "Xcode", "Math"
         ]
       ]
     },
     {
-      "title": "Technical Experience",
+      "text": "Certificates & Awards",
+      "style": {
+        "fontSize": "1em"
+      },
       "content": [
-        [
-          "kitchenfeelings.net (Food blog, out of order)",
-          "Full stack developer, Co Founder, Co Owner",
-          "Jul 2015 - Jul 2016"
-        ],
-        [
-          "AppToCloud.com",
-          "Javascript developer",
-          "May 2015 - February 2018"
-        ],
-        [
-          "Others",
-          "Reference list below"
-        ]
+        "Czech Language level B1",
+        "UJOP Krystal, Prague",
+        "2013",
+        "",
+        "React Contest winner",
+        "STRV, Prague",
+        "2017"
       ]
     },
     {
-      "title": "Non technical experience",
+      "text": "Other References",
+      "style": {
+        "fontSize": "1em"
+      },
       "content": [
-        [
-          "E-shop svetovod.com.ua",
-          "Sales consultant, shop administration, content management",
-          "Jul 2010 - Sep 2011"
-        ],
-        [
-          "Nightclub “Kashtan”",
-          "Barman",
-          "Mar 2006 - Jun 2008"
-        ],
-        [
-          "Hotel “Prague”",
-          "Barman,  administrator",
-          "Jul 2008 - May 2009"
-        ],
-        [
-          "Bar “Kashtan Lounge”",
-          "Barman, barista",
-          "Apr 2009 - Jun 2010"
-        ],
-        [
-          "Nightclub “Panorama”",
-          "Barman",
-          "Nov 2011 - Sep 2012"
-        ]
+        "<a target='_blank' href='https://www.npmjs.com/package/colorer'>colorer</a> JS color manipulation library",
+        "<br />",
+        "Eventio app - STRV React Contest <a target='_blank' href='https://eventio-contest.herokuapp.com'>https://eventio-contest.herokuapp.com</a> frontend + partially backend (client server + graphql middleware + sessions manager). API might be down already.",
+        "<br />",
+        "<a target='_blank' href='http://cz.emclient.com/'>http://cz.emclient.com/</a> index page",
+        "<br />",
+        "<a target='_blank' href='https://www.icewarp.com/'>https://www.icewarp.com/</a> 4 features animations on homepage.",
+        "<br />",
+        "<a target='_blank' href='https://licensemanager.emclient.com/account/login?returnUrl='>https://licensemanager.emclient.com</a> email client licensing (credentials required)"
       ]
     },
     {
-      "title": "Certificates and Awards",
+      "text": "Interests",
+      "style": {
+        "fontSize": ".9em"
+      },
       "content": [
-        [
-          "Czech Language level B1",
-          "UJOP Krystal, Prague",
-          "2013"
-        ],
-        [
-          "React Contest winner",
-          "STRV, Prague",
-          "2017"
-        ]
+        "Game programming",
+        "<br />",
+        "Computer Graphics programming",
+        "<br />",
+        "OpenGL, DirectX programing",
+        "<br />",
+        "Physics, Physical assets programming"
       ]
     },
     {
-      "title": "Skill set",
+      "text": "Non-technical experience",
+      "style": {
+        "fontSize": ".7em"
+      },
       "content": [
-        {
-          "title": "Languages",
-          "content": [
-            "English - advanced",
-            "Czech - advanced",
-            "Russian - native",
-            "Ukrainian - native"
-          ]
-        },
-        {
-          "title": "Programming Languages",
-          "content": [
-            "Frontend (Javascript + HTML + CSS) - exceptional",
-            "Node.js - exceptional",
-            "C++  - good",
-            "GLSL - basic",
-            "C# - basic",
-            "Python - basic",
-            "Ruby - basic",
-            "Swift - basic"
-          ]
-        },
-        {
-          "title": "Web Frameworks, tools, libraries, APIs…",
-          "content": [
-            "ES6", "Canvas", "WebGL", "WebAudio", "React.js", "Redux", "SASS", "LESS", "svg", "three.js", "Express", "Apollo", "web sockets", "graphql", "REST"
-          ]
-        },
-        {
-          "title": "Databases",
-          "content": [
-            "MongoDB", "Redis", "Postgres", "MariaDB"
-          ]
-        },
-        {
-          "title": "Game Engines",
-          "content": [
-            "Unreal Engine - mid-level (~ 70 hours of tutorials)",
-            "Unity - basic (~ 20 hours of tutorials)"
-          ]
-        },
-        {
-          "title": "Others",
-          "content": [
-            "git", "bash", "VS", "Xcode"
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Other References",
-      "content": [
-        "<a href='https://www.npmjs.com/package/colorer'>colorer</a> JS color manipulation library",
-        "Eventio app - STRV React Contest <a href='https://eventio-contest.herokuapp.com'>https://eventio-contest.herokuapp.com</a> frontend + partially backend (client server + graphql middleware + sessions manager). API might be down already.",
-        "<a href='http://cz.emclient.com/'>http://cz.emclient.com/</a> index page",
-        "<a href='https://www.icewarp.com/'>https://www.icewarp.com/</a> 4 features animations on homepage.",
-       "<a href='https://licensemanager.emclient.com/account/login?returnUrl='>https://licensemanager.emclient.com</a> email client licensing (credentials required)"
+        "E-shop svetovod.com.ua",
+        "Sales consultant, shop administration, content management",
+        "Jul 2010 - Sep 2011",
+        "<br />",
+        "Nightclub “Kashtan”",
+        "Barman",
+        "Mar 2006 - Jun 2008",
+        "<br />",
+        "Hotel “Prague”",
+        "Barman,  administrator",
+        "Jul 2008 - May 2009",
+        "<br />",
+        "Bar “Kashtan Lounge”",
+        "Barman, barista",
+        "Apr 2009 - Jun 2010",
+        "<br />",
+        "Nightclub “Panorama”",
+        "Barman",
+        "Nov 2011 - Sep 2012"
       ]
     }
 
