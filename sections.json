@@ -43,10 +43,12 @@
         "AppToCloud.com",
         "Javascript developer",
         "May 2015 - February 2018",
+        "<small>Implementation of client and middleware parts of Web application; Closely worked with libguac to deliver realtime control over remote machine; Intensive dynamic ui implementation</small>"
         "",
         "DEV:GUERILLA",
         "CV/CG/XR Programmer",
         "March 2018 - now",
+        "<small>Implementation of SmartPrague application for Hololens; Performance improvements; memory usage improvements; dynamic assets loading implementation; CV implementation; shared experience implementation; livestreaming implementation; plugins programming for Unity</small>",
         "",
         "Others",
         "Reference list below"
@@ -54,7 +56,7 @@
     },
     {
       "text": "Skill set",
-      "content": [
+      "content": [ompute
         [
           "<strong>Languages</strong>",
           "English - advanced",
@@ -77,7 +79,8 @@
         "",
         [
           "<strong>Frameworks, tools, libraries, APIs…</strong>",
-          "OpenGL", "OpenCV", "UWP", "Kinect SDK 2.0",
+          "OpenGL", "OpenCV", "UWP", "Kinect SDK 2.0", "libffmpeg",
+          "glfw", "pcl", "glm",
           "Canvas", "WebGL", "WebAudio",
           "React.js", "Redux", "SASS", "LESS", "svg",
           "three.js", "Express", "Apollo", "web sockets",
