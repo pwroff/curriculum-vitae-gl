@@ -7,6 +7,8 @@
         "Last name: Lazaryev",
         "Date of birth: 12.02.1988",
         "Civil status: Married",
+        "Nationality: Ukranian",
+        "Living in: Prague, Czech Republic",
         "",
         "Email: <a href='mailto:leonidlazaryev@gmail.com'>leonidlazaryev@gmail.com</a>",
         "Phone: <a href='tel:+420777448738'>+420777448738</a>",
@@ -42,6 +44,10 @@
         "Javascript developer",
         "May 2015 - February 2018",
         "",
+        "DEV:GUERILLA",
+        "CV/CG/XR Programmer",
+        "March 2018 - now",
+        "",
         "Others",
         "Reference list below"
       ]
@@ -59,23 +65,23 @@
         "",
         [
           "<strong>Programming Languages</strong>",
-          "Frontend (Javascript + HTML + CSS) - exceptional",
-          "ES6 - exceptional",
-          "Node.js - exceptional",
-          "C++  - good",
-          "C# - ok",
-          "GLSL - basic",
-          "Python - basic",
-          "Ruby - basic",
-          "Swift - basic"
+          "C (C++)",
+          "C#",
+          "GLSL",
+          "HLSL",
+          "Frontend (Javascript + HTML + CSS)",
+          "ES6",
+          "Node.js",
+          "Python 3.x - basic"
         ],
         "",
         [
           "<strong>Frameworks, tools, libraries, APIs…</strong>",
+          "OpenGL", "OpenCV", "UWP", "Kinect SDK 2.0",
           "Canvas", "WebGL", "WebAudio",
           "React.js", "Redux", "SASS", "LESS", "svg",
           "three.js", "Express", "Apollo", "web sockets",
-          "graphql", "REST", "Basic OpenGL"
+          "graphql", "REST"
         ],
         "",
         [
@@ -87,13 +93,14 @@
         "",
         [
           "<strong>Game Engines</strong>",
-          "Unreal Engine - mid-level (~ 90 hours of tutorials)",
-          "Unity - basic (~ 40 hours of tutorials)"
+          "Unreal Engine",
+          "Unity"
         ],
         "",
         [
           "<strong>Others</strong>",
-          "git", "bash", "VS", "Xcode", "Math"
+          "multithread programming",
+          "git", "bash", "command prompt", "Visual Studio", "Xcode"
         ]
       ]
     },
@@ -118,15 +125,13 @@
         "fontSize": "1em"
       },
       "content": [
+        "<a target='_blank' href='http://www.praguehackfest.cz/'>PragueHackFest 2018</a> Mentor",
+        "<br />",
+        "<a target='_blank' href='https://czechvrfest.com/en'>Czech VR Fest 2018</a> Speaker",
+        "<br />",
         "<a target='_blank' href='https://www.npmjs.com/package/colorer'>colorer</a> JS color manipulation library",
         "<br />",
-        "Eventio app - STRV React Contest <a target='_blank' href='https://eventio-contest.herokuapp.com'>https://eventio-contest.herokuapp.com</a> frontend + partially backend (client server + graphql middleware + sessions manager). API might be down already.",
-        "<br />",
-        "<a target='_blank' href='http://cz.emclient.com/'>http://cz.emclient.com/</a> index page",
-        "<br />",
-        "<a target='_blank' href='https://www.icewarp.com/'>https://www.icewarp.com/</a> 4 features animations on homepage.",
-        "<br />",
-        "<a target='_blank' href='https://licensemanager.emclient.com/account/login?returnUrl='>https://licensemanager.emclient.com</a> email client licensing (credentials required)"
+        "Eventio app - STRV React Contest <a target='_blank' href='https://eventio-contest.herokuapp.com'>https://eventio-contest.herokuapp.com</a> frontend + partially backend (client server + graphql middleware + sessions manager). API might be down already."
       ]
     },
     {
@@ -135,11 +140,11 @@
         "fontSize": ".9em"
       },
       "content": [
-        "Game programming",
-        "<br />",
         "Computer Graphics programming",
         "<br />",
-        "OpenGL, DirectX programing",
+        "Engine programming",
+        "<br />",
+        "Game programming",
         "<br />",
         "Physics, Physical assets programming"
       ]
